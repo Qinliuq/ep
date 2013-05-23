@@ -21,21 +21,24 @@ tpopp = tpopp[,!(names(tpopp) %in% drop_rows)]
 # Per-capita energy consumption
 tecpc = tetcb / tpopp
 
-# For each year
-ldata = tecpc
-gini = c()
-for (n in names(ldata)) {
-	# Obtain the lorenz curve
-	ydata = setNames(ldata[,n], rownames(ldata))
-	ydata = ydata[0:50]
-	lorenz = cumsum(sort(ydata / sum(ydata)))
+"allplots" <- function (ldata) {
+	gini = c()
+	for (n in names(ldata)) {
+		# Obtain the lorenz curve
+		ydata = setNames(ldata[,n], rownames(ldata))
+		ydata = ydata[0:50]
+		lorenz = cumsum(sort(ydata / sum(ydata)))
 
-	# Plot the lorenz curve
-	plot(lorenz)
+		# Plot the lorenz curve
+		plot(lorenz)
 
-	# Calculate the gini coefficient
-	gini = c(gini, 2 * (0.5 - sum(lorenz) / length(lorenz)))
+		# Calculate the gini coefficient
+		gini = c(gini, 2 * (0.5 - sum(lorenz) / length(lorenz)))
+	}
+
+	names(gini) = names(ldata)
+	plot(gini)
 }
 
-names(gini) = names(ldata)
-plot(gini)
+allplots(tetcb)
+allplots(tecpc)
