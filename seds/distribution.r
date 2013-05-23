@@ -21,7 +21,7 @@ tpopp = tpopp[,!(names(tpopp) %in% drop_rows)]
 # Per-capita energy consumption
 tecpc = tetcb / tpopp
 
-"allplots" <- function (ldata) {
+allplots <- function (ldata) {
 	gini = c()
 	for (n in names(ldata)) {
 		# Obtain the lorenz curve
