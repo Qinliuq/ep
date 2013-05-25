@@ -1,5 +1,5 @@
 fig=figure;
-aviobj=avifile('2.avi');
+aviobj=avifile('LorentzPlots.avi','FPS',5);
 ec_mov=xlsread('Global_ectot','c3:ag225');
 pop_mov=xlsread('Global_pop','c3:ag225');
 ecpercap_mov=xlsread('Global_ecpercap','c3:ag225');
